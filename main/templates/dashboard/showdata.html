@@ -1,0 +1,35 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+    <h1 style="padding-left: 360px;">庫存照片</h1>
+    
+    
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        {% for image in images%}
+        <tbody>
+            <tr>
+                <td>{{ image.name }}</td>
+                <td><img src="{{url_for('static',filename=image.src)}}" style="width:200px;height:200px;"></td>
+            </tr>
+        </tbody>
+        {% endfor %}
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+            </tr>
+        </tfoot>
+    </table>
+    
+    <script>
+        $(document).ready(function(){
+            $('#example').DataTable();
+            });
+    </script>
+
+{% endblock content %}
