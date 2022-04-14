@@ -10,7 +10,7 @@ class VideoCamera(object):
 
     def get_frame(self):
         ret, frame = self.video.read()
-        flip_H = cv2.flip(frame, 1)
-        ret, jpeg = cv2.imencode('.jpg', flip_H)
+        
+        ret, jpeg = cv2.imencode('.jpg', frame)
 
-        return jpeg.tobytes(),flip_H
+        return jpeg.tobytes(),frame

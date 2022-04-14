@@ -6,7 +6,7 @@ from numpy import append
 Dashboard=Blueprint('Dashboard',__name__)
 @Dashboard.route('/home')
 def home():
-    return render_template('dashboard/base.html')
+    return render_template('dashboard/homepage.html')
 
 @Dashboard.route('/showdata')
 def show_data():
