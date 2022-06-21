@@ -1,0 +1,27 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+    <h5 style="padding-left: 240px;" class="card-title">會員註冊</h5>
+    <form style="padding-left: 250px;" action = "{{url_for('userInfo.register')}}" method = "POST">
+        {{ form.csrf_token }}
+        <fieldset>
+            {{ form.username.label }}
+            <br>
+            {{ form.username }}
+            <br>
+            {{ form.email.label }}
+            <br>
+            {{ form.email }}
+            <br>
+            {{ form.password.label }}
+            <br>
+            {{ form.password }}
+            <br>
+            {{ form.password2.label }}
+            <br>
+            {{ form.password2 }}
+            <br>
+            <br>
+            {{ form.submit }}
+        </fieldset>
+    </form>
+{% endblock content %}

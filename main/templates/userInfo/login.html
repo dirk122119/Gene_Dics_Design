@@ -1,0 +1,31 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+
+            <h5 style="padding-left: 240px;" class="card-title">登入</h5>
+
+
+            <form style="padding-left: 240px;" action = "{{url_for('userInfo.login')}}" method = "POST">
+                {{ form.csrf_token }}
+                <fieldset>
+                    {{ form.username.label }}
+                    <br>
+                    {{ form.username }}
+                    <br>
+                    {{ form.password.label }}
+                    <br>
+                    {{ form.password }}
+                    <br>
+                    <br>
+                    <br>
+                    {{ form.submit }}
+                    <p>
+                        忘記密碼
+                        <a href="{{ url_for('userInfo.reset_password') }}">點選重置</a>
+                        /
+                        沒有帳號
+                        <a href="{{ url_for('userInfo.register') }}">註冊帳號</a>
+                    </p>
+                    
+                </fieldset>
+            </form>
+{% endblock content %}

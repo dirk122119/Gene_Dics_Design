@@ -1,0 +1,57 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+
+    <h5 style="padding-left: 240px;" class="card-title">設定AI參數</h5>
+    <form method="post">
+    <div class="row">
+        <label for="choseModel" class="form-label">選擇模型</label>
+
+        <select class="form-select" aria-label="Default select example" name="choseModel">
+            <option selected>Open this select menu</option>
+            {% for item in test["modelList"] %}
+                <option value={{loop.index}}>{{item}}</option>
+            {% endfor %}
+        </select>
+    </div>
+        
+    <br>
+    <div class="row">
+        <label for="confidenceRangeUpdate" class="form-label"><h3>信心程度</h3></label>
+        <div class="col-md-9">
+            <input type="range" class="form-range" default="50" min="0" max="100" step="1" id="confidenceRangeUpdate" name="conf">
+        </div>
+        <div class="col-md-3">
+            <input type="number" class="form-number" id="confidenceNumberUpdate" value="50"><b style="font-size:20px;">%</b>
+        </div>
+    </div>
+    
+    <br>
+    <div class="row">
+        <label for="IOURangeUpdate" class="form-label"><h3>IOU比例</h3></label>
+        <div class="col-md-9">
+            <input type="range" class="form-range" default="50" min="0" max="100" step="1" id="IOURangeUpdate" name="IOU">
+        </div>
+        <div class="col-md-3">
+            <input type="number" class="form-number" id="IOUNumberUpdate" value="50"><b style="font-size:20px;">%</b>
+        </div>
+    </div>
+
+    <br>
+        <button type="submit">送出</button>
+    </form>
+    
+<script>
+    $(document).ready(function(){
+    $("form").on('keydown',function(event){
+        if (event.key === "Enter"){
+        event.preventDefault();
+      }
+    });
+
+    $("#confidenceRangeUpdate").on('change', function() {$("#confidenceNumberUpdate").val(this.value);}); 
+    $("#confidenceNumberUpdate").on('change', function() {$("#confidenceRangeUpdate").val(this.value); });
+    $("#IOURangeUpdate").on('change', function() {$("#IOUNumberUpdate").val(this.value);}); 
+    $("#IOUNumberUpdate").on('change', function() {$("#IOURangeUpdate").val(this.value); });
+});
+</script>
+{% endblock content %}

@@ -22,3 +22,7 @@ def show_data():
             list_images.append({"name":image,"src":"data/"+image})
     print(list_images[1]["src"])
     return render_template('dashboard/showdata.html',images=list_images)
+
+@Dashboard.route('/accountManager')
+def accountManager():
+    return "issuperuser"
