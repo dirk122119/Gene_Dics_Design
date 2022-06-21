@@ -22,20 +22,22 @@ def home():
 @database.route('/upload', methods=['POST'])
 def upload():
 
+   ##upload file way
    file = request.files['inputFile']
+   data = file.read()##type is bytes
+   render_file = render_picture(data)
+   text = request.form['text']
+   location = request.form['location']
    ##
    ##opencv read image and convert to bytes
    ##
    frame=cv2.imread("main/static/data/04-01-2022-14-08-35.png")
    _, img_encode = cv2.imencode('.png', frame)
-   img_bytes=img_encode.tobytes()
+   img_bytes=img_encode.tobytes()##type is bytes
    
-   data = file.read()##type is bytes
-
-   render_file = render_picture(data)
+   
    render_file = render_picture(img_bytes)
-   text = request.form['text']
-   location = request.form['location']
+
 
 #    newFile = FileContent(name=file.filename, data=data, 
 #    rendered_data=render_file, text=text, location=location)
