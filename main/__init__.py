@@ -38,6 +38,7 @@ app.register_blueprint(userInfo,url_prefix='/userInfo')
 app.register_blueprint(aiConfig,url_prefix='/aiConfig')
 app.register_blueprint(database,url_prefix='/database')
 from main.userInfo.model import UserRegister
+from main.aiConfig.model import furnitureDatabase
 
 class MyModeView(ModelView):
     """
@@ -68,3 +69,4 @@ class MyAdminIndexView(AdminIndexView):
         return redirect("../admin/userregister")
 admin=Admin(app,index_view=MyAdminIndexView(),name="後台")
 admin.add_view(MyModeView(UserRegister,db.session,name="帳號管理"))
+admin.add_view(MyModeView(furnitureDatabase,db.session,name="資料庫"))

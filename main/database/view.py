@@ -21,7 +21,7 @@ def home():
 
 @database.route('/upload', methods=['POST'])
 def upload():
-
+   from main.aiConfig.model import furnitureDatabase
    ##upload file way
    file = request.files['inputFile']
    data = file.read()##type is bytes
@@ -38,11 +38,14 @@ def upload():
    
    render_file = render_picture(img_bytes)
 
-
+   new_furniture=furnitureDatabase(imgName="test",imgInputDate="12-34-56",imgInputFrom="ee",imgRendered_data=render_file,imgData=img_bytes)
+   db.session.add(new_furniture)
+   db.session.commit() 
 #    newFile = FileContent(name=file.filename, data=data, 
 #    rendered_data=render_file, text=text, location=location)
 #    db.session.add(newFile)
 #    db.session.commit() 
+   data=furnitureDatabase.query.first()
    flash(f'Pic {file.filename} uploaded Text: {text} Location: {location}')
-   return render_template('database/showdata.html',data=render_file)
+   return render_template('database/showdata.html',data=data.imgRendered_data)
 #    return render_template('upload.html')
