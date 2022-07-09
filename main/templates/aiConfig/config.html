@@ -2,7 +2,7 @@
 {% block content %}
 
     <h5 style="padding-left: 240px;" class="card-title">設定AI參數</h5>
-    <form method="post">
+    <form action="{{url_for('aiConfig.home')}}" method="post">
     <div class="row">
         <label for="choseModel" class="form-label">選擇模型</label>
 

@@ -37,9 +37,10 @@ app.register_blueprint(Camera,url_prefix='/camera')
 app.register_blueprint(userInfo,url_prefix='/userInfo')
 app.register_blueprint(aiConfig,url_prefix='/aiConfig')
 app.register_blueprint(database,url_prefix='/database')
+
 from main.userInfo.model import UserRegister
 from main.aiConfig.model import furnitureDatabase
-
+from main.aiConfig.model import furnitureImgDatabase
 class MyModeView(ModelView):
     """
     判斷是否為superuser
@@ -70,3 +71,4 @@ class MyAdminIndexView(AdminIndexView):
 admin=Admin(app,index_view=MyAdminIndexView(),name="後台")
 admin.add_view(MyModeView(UserRegister,db.session,name="帳號管理"))
 admin.add_view(MyModeView(furnitureDatabase,db.session,name="資料庫"))
+admin.add_view(MyModeView(furnitureImgDatabase,db.session,name="資料庫"))
