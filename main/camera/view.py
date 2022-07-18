@@ -1,6 +1,7 @@
 from flask import redirect, render_template,Blueprint,Response,url_for,flash
 from .camera import VideoCamera
 from cv2 import cv2 as cv2 
+import socket
 
 def gen(camera):
     while True:
@@ -36,4 +37,16 @@ def img_save():
     _,image=video_stream.get_frame()
     cv2.imwrite("main/static/data/"+str_time+".png", image,[cv2.IMWRITE_PNG_COMPRESSION, 5])
     flash("已取像")
+
+    HOST = '0.0.0.0'
+    PORT = 8080
+
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((HOST, PORT))
+    outdata ='data/dog.jpg'
+    print('send: ' + outdata)
+    s.send(outdata.encode())
+    indata = s.recv(1024)
+    print("receive : "+indata.decode())
+
     return redirect(url_for('Camera.video'))

@@ -9,9 +9,10 @@
         <select class="form-select" aria-label="Default select example" name="choseModel">
             <option selected>Open this select menu</option>
             {% for item in test["modelList"] %}
-                <option value={{loop.index}}>{{item}}</option>
+                <option value={{item}}>{{item}}</option>
             {% endfor %}
         </select>
+        
     </div>
         
     <br>

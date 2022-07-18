@@ -1,5 +1,5 @@
 from click import argument
-from flask import render_template,Blueprint,Response,request
+from flask import render_template,Blueprint,Response,request,redirect, url_for
 import os,glob,json
 
 from numpy import append
@@ -12,12 +12,21 @@ def home():
     pjdir = os.path.abspath(os.path.dirname(__file__))
     test=pjdir[:-9]+"/static/data"
     get_model=glob.glob(os.path.join(test, "*.png"))
+    modelName=[x.split("/")[-1] for x in get_model]
     argument["modelList"]=get_model
+
+    txtPath=pjdir[:-9]+"/static/config.txt"
+
+    with open(txtPath, 'w') as f:
+        f.write('world')
+
     if(request.method=="POST"):
         print(request.form["IOU"])
-        flash(request.form["IOU"])
-        import subprocess
-        subprocess.run('ls',shell=True)
-
+        with open(txtPath, 'w') as f:
+            f.write(request.form["choseModel"]+"\n")
+            f.write(request.form["conf"]+"\n")
+            f.write(request.form["IOU"]+"\n")
+        flash("選擇模型 : "+request.form["choseModel"]+"設定 IOU :"+request.form["IOU"]+"設定 conf : "+request.form["conf"])
+        return redirect(url_for("Camera.video"))
     return render_template('aiConfig/config.html',test=argument)
 

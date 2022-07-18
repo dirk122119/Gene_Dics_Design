@@ -40,10 +40,10 @@ def upload():
    render_file = render_picture(img_bytes)
 
 #    new_furniture=furnitureDatabase(imgName="test",imgInputDate="12-34-56",imgInputFrom="ee",imgRendered_data=render_file,imgData=img_bytes)
-   new_furniture=furnitureDatabase(imgName="test3",imgInputDate="12-34-56",imgInputFrom="ee",imgLength="待輸入",imgWidth="待輸入",imgHeight="待輸入")
+   new_furniture=furnitureDatabase(imgName="test20",imgClass="GD",imgNum=1,imgInputDate="12-34-56",imgInputFrom="ee",imgLength="待輸入",imgWidth="待輸入",imgHeight="待輸入")
    db.session.add(new_furniture)
    db.session.commit()
-   new_item=furnitureDatabase.query.filter_by(imgName="test3").first()
+   new_item=furnitureDatabase.query.filter_by(imgName="test20").first()
 
    new_furniture_Img=furnitureImgDatabase(imgRendered_data=render_file,imgData=img_bytes,furniture_id=new_item.id)
    db.session.add(new_furniture_Img)

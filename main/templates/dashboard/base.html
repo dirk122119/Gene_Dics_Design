@@ -64,13 +64,13 @@
                             {% endif %}
                         </li>
                         <li>
-                            <a href="#"> <i class="fas fa-box-open"></i> 辨識模組選擇(comming soon)</a>
+                            <a href="{{url_for('aiConfig.home')}}"> <i class="fas fa-box-open"></i> 辨識模組選擇(comming soon)</a>
                         </li>
                         <li>
                             <a href="{{url_for('Camera.video')}}"> <i class="fas fa-camera"></i> 執行辨識</a>
                         </li>
                         <li>
-                            <a href="{{url_for('Dashboard.show_data')}}"> <i class="fas fa-chart-bar"></i>家具素材資料庫</a>
+                            <a href="{{url_for('Dashboard.showDatabase')}}"> <i class="fas fa-chart-bar"></i>家具素材資料庫</a>
                         </li>
                         {% if current_user.superuser %}
                         <li class="dropdown" id="dropdown">

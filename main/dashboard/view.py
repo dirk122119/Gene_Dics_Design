@@ -23,6 +23,12 @@ def show_data():
     print(list_images[1]["src"])
     return render_template('dashboard/showdata.html',images=list_images)
 
+@Dashboard.route('/showDatabase')
+def showDatabase():
+    from main.aiConfig.model import furnitureDatabase
+    data=furnitureDatabase.query.all()
+    return render_template('dashboard/showDatabase.html',datas=data)
+
 @Dashboard.route('/accountManager')
 def accountManager():
     return "issuperuser"

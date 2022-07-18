@@ -1,0 +1,66 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+    <h1 style="padding-left: 360px;">庫存照片</h1>
+    
+    
+    <table id="example" class="display" style="width:120%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>家具種類</th>
+                <th>家具數量</th>
+                <th>家具進庫時間</th>
+                <th>家具來源</th>
+                <th>物件長</th>
+                <th>物件寬</th>
+                <th>物件高</th>
+                <th>按鈕一</th>
+                <th>按鈕二</th>
+                
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for data in datas%}
+        
+            <tr>
+                <td>{{ data.imgName }}</td>
+                <td><img src="data:image/jpeg;base64,{{ data.image.imgRendered_data }}" style="width:200px;height:200px;"></td>
+                <td>{{ data.imgClass }}</td>
+                <td>{{ data.imgNum }}</td>
+                <td>{{ data.imgInputDate }}</td>
+                <td>{{ data.imgInputFrom }}</td>
+                <td>{{ data.imgLength }}</td>
+                <td>{{ data.imgWidth }}</td>
+                <td>{{ data.imgHeight }}</td>
+                <th>按鈕一</th>
+                <th>按鈕二</th>
+            </tr>
+        
+        {% endfor %}
+    </tbody>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>家具種類</th>
+                <th>家具數量</th>
+                <th>家具進庫時間</th>
+                <th>家具來源</th>
+                <th>物件長</th>
+                <th>物件寬</th>
+                <th>物件高</th>
+                <th>按鈕一</th>
+                <th>按鈕二</th>
+            </tr>
+        </tfoot>
+    </table>
+    
+    <script>
+        $(document).ready(function(){
+            $('#example').DataTable();
+            });
+    </script>
+
+{% endblock content %}

@@ -5,6 +5,8 @@ class furnitureDatabase(db.Model):
     __tablename__ = u'furniture'
     id = db.Column(db.Integer, primary_key=True)
     imgName = db.Column(db.String(80), unique=True, nullable=False)
+    imgClass = db.Column(db.String(80), unique=False, nullable=False)
+    imgNum = db.Column(db.Integer, unique=False, nullable=True)
     imgInputDate=db.Column(db.String(80), unique=False, nullable=False)
     imgInputFrom=db.Column(db.String(80), unique=False, nullable=False)
     imgLength=db.Column(db.String(80), unique=False, nullable=False)
@@ -17,6 +19,6 @@ class furnitureImgDatabase(db.Model):
     __tablename__ = u'Img'
     id = db.Column(db.Integer, primary_key=True)
     furniture_id = db.Column(db.Integer, db.ForeignKey('furniture.id'))
-    imgRendered_data=db.Column(db.Text, nullable=False)#Data to render the pic in browser
+    imgRendered_data=db.Column(db.Text, nullable=True)#Data to render the pic in browser
     imgData=db.Column(db.LargeBinary, nullable=False) #Actual data, needed for Download
     
